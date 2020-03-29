@@ -1,0 +1,25 @@
+{
+  "name": "node-addon-keyboard-auto",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "install": "node-gyp rebuild",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xiekun1992/node-addon-keyboard-auto.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xiekun1992/node-addon-keyboard-auto/issues"
+  },
+  "homepage": "https://github.com/xiekun1992/node-addon-keyboard-auto#readme",
+  "devDependencies": {
+    "node-addon-api": "^2.0.0",
+    "node-gyp": "^6.1.0"
+  }
+}
