@@ -1,0 +1,25 @@
+const keyboardAuto = require('../index')
+const {performance} = require('perf_hooks')
+
+// console.log(keyboardAuto)
+const st = performance.now()
+keyboardAuto.init()
+
+keyboardAuto.keydown('a')
+keyboardAuto.keyup('a')
+keyboardAuto.keydown('a')
+keyboardAuto.keyup('a')
+keyboardAuto.keydown('a')
+keyboardAuto.keyup('a')
+keyboardAuto.keydown('a')
+keyboardAuto.keyup('a')
+keyboardAuto.keydown('a')
+keyboardAuto.keyup('a')
+keyboardAuto.keydown('controlleft')
+keyboardAuto.keydown('c')
+keyboardAuto.keyup('c')
+keyboardAuto.keyup('controlleft')
+
+keyboardAuto.destroy()
+console.log(`${(performance.now() - st) / 10}ms`)
+
