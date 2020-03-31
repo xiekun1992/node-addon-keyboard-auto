@@ -1,7 +1,8 @@
 #include "keycode.h"
-
+#include <windows.h>
 namespace Keycode {
   Keycode::Keycode() {
+#if __linux == 1 
     keymap["a"] = XK_A;
     keymap["b"] = XK_B;
     keymap["c"] = XK_C;
@@ -117,7 +118,122 @@ namespace Keycode {
     keymap["pagedown"] = XK_Page_Down;
     keymap["home"] = XK_Home;
     keymap["end"] = XK_End;
+#elif _WIN32 == 1
+    keymap["a"] = 0x41;
+    keymap["b"] = 0x42;
+    keymap["c"] = 0x43;
+    keymap["d"] = 0x44;
+    keymap["e"] = 0x45;
+    keymap["f"] = 0x46;
+    keymap["g"] = 0x47;
+    keymap["h"] = 0x48;
+    keymap["i"] = 0x49;
+    keymap["j"] = 0x4A;
+    keymap["k"] = 0x4B;
+    keymap["l"] = 0x4C;
+    keymap["m"] = 0x4D;
+    keymap["n"] = 0x4E;
+    keymap["o"] = 0x4F;
+    keymap["p"] = 0x50;
+    keymap["q"] = 0x51;
+    keymap["r"] = 0x52;
+    keymap["s"] = 0x53;
+    keymap["t"] = 0x54;
+    keymap["u"] = 0x55;
+    keymap["v"] = 0x56;
+    keymap["w"] = 0x57;
+    keymap["x"] = 0x58;
+    keymap["y"] = 0x59;
+    keymap["z"] = 0x5A;
 
+    keymap["0"] = 0x30;
+    keymap["1"] = 0x31;
+    keymap["2"] = 0x32;
+    keymap["3"] = 0x33;
+    keymap["4"] = 0x34;
+    keymap["5"] = 0x35;
+    keymap["6"] = 0x36;
+    keymap["7"] = 0x37;
+    keymap["8"] = 0x38;
+    keymap["9"] = 0x39;
+
+    keymap["f1"] = VK_F1;
+    keymap["f2"] = VK_F2;
+    keymap["f3"] = VK_F3;
+    keymap["f4"] = VK_F4;
+    keymap["f5"] = VK_F5;
+    keymap["f6"] = VK_F6;
+    keymap["f7"] = VK_F7;
+    keymap["f8"] = VK_F8;
+    keymap["f9"] = VK_F9;
+    keymap["f10"] = VK_F10;
+    keymap["f11"] = VK_F11;
+    keymap["f12"] = VK_F12;
+
+    keymap["escape"] = VK_ESCAPE;
+    keymap["tab"] = VK_TAB;
+    keymap["capslock"] = VK_CAPITAL;
+    keymap["shiftleft"] = VK_LSHIFT;
+    keymap["controlleft"] = VK_LCONTROL;
+    keymap["meta"] = VK_LWIN;
+    keymap["altleft"] = VK_MENU;
+    keymap["space"] = VK_SPACE;
+    keymap["altright"] = VK_MENU;
+    keymap["controlright"] = VK_RCONTROL;
+    keymap["shiftright"] = VK_RSHIFT;
+    keymap["printscreen"] = VK_SNAPSHOT;
+    keymap["pause"] = VK_PAUSE;
+    keymap["insert"] = VK_INSERT;
+    keymap["scrolllock"] = VK_SCROLL;
+    keymap["numlock"] = VK_NUMLOCK;
+    keymap["backspace"] = VK_BACK;
+    keymap["delete"] = VK_DELETE;
+    keymap["enter"] = VK_RETURN;
+    keymap["contextmenu"] = VK_RMENU;
+
+    keymap["`"] = 65535;
+    keymap["~"] = 65535;
+    keymap["!"] = 65535;
+    keymap["@"] = 65535;
+    keymap["#"] = 65535;
+    keymap["$"] = 65535;
+    keymap["%"] = 65535;
+    keymap["^"] = 65535;
+    keymap["&"] = 65535;
+    keymap["*"] = 65535;
+    keymap["("] = 65535;
+    keymap[")"] = 65535;
+    keymap["-"] = 65535;
+    keymap["_"] = 65535;
+    keymap["="] = 65535;
+    keymap["+"] = 65535;
+    keymap["["] = 65535;
+    keymap["]"] = 65535;
+    keymap["{"] = 65535;
+    keymap["}"] = 65535;
+    keymap["\\"] = 65535;
+    keymap["|"] = 65535;
+    keymap[";"] = 65535;
+    keymap[":"] = 65535;
+    keymap["'"] = 65535;
+    keymap["\""] = 65535;
+    keymap[","] = 65535;
+    keymap["."] = 65535;
+    keymap["/"] = 65535;
+    keymap["<"] = 65535;
+    keymap[">"] = 65535;
+    keymap["?"] = 65535;
+
+
+    keymap["up"] = VK_UP;
+    keymap["down"] = VK_DOWN;
+    keymap["left"] = VK_LEFT;
+    keymap["right"] = VK_RIGHT;
+    keymap["pageup"] = VK_PRIOR;
+    keymap["pagedown"] = VK_NEXT;
+    keymap["home"] = VK_HOME;
+    keymap["end"] = VK_END;
+#endif
   }
   Keycode::~Keycode() {}
   int Keycode::charToKeycode(string str) {
