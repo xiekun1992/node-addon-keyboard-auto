@@ -2,14 +2,6 @@
 
 keyboard_auto::Keyboard kb;
 
-// Napi::Value Keyboard::init(const Napi::CallbackInfo& info) {
-//   display = XOpenDisplay(NULL);
-//   return info.Env().Undefined();
-// }
-// Napi::Value Keyboard::destroy(const Napi::CallbackInfo& info) {
-//   XCloseDisplay(display);
-//   return info.Env().Undefined();
-// }
 Napi::Value Keyboard::keydown(const Napi::CallbackInfo& info) {
   if (info.Length() < 1) {
     Napi::Error::New(info.Env(), "param keystr expected").ThrowAsJavaScriptException();
