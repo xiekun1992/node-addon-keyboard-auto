@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+  - 'node'
+cache: npm
+
+jobs:
+  include:
+    - stage: build
+      os: linux
+      before_script:
+      - npm run build
+    - stage: build
+      os: windows
+      before_script:
+      - npm run build
+      
