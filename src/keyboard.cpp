@@ -14,7 +14,7 @@ namespace keyboard_auto {
   Keyboard::~Keyboard() {
 #if __linux == 1
     XCloseDisplay(display);
-    display = NULL;
+    // display = NULL;
 #elif _WIN32 == 1
 #endif
   }
