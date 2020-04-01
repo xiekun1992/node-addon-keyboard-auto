@@ -1,5 +1,3 @@
-const keyboardAuto = require('../index')
-const {performance} = require('perf_hooks')
 const os = require('os')
 // console.log(keyboardAuto)
 
@@ -7,6 +5,9 @@ if (os.platform() == 'linux' && !process.env.DISPLAY) {
     console.log('npm test will not run on linux server') // 没有GUI环境导致SegmentFault错误
     process.exit(0)
 } else {
+    const keyboardAuto = require('../index')
+    const {performance} = require('perf_hooks')
+    
     setTimeout(() => {
     
         const st = performance.now()
