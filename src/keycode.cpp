@@ -1,5 +1,5 @@
 #include "keycode.h"
-#include <windows.h>
+
 namespace Keycode {
   Keycode::Keycode() {
 #if __linux == 1 
