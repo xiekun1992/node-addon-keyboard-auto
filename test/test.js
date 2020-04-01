@@ -5,6 +5,7 @@ const os = require('os')
 
 if (os.platform() == 'linux' && !process.env.DISPLAY) {
     console.log('npm test will not run on linux server') // 没有GUI环境导致SegmentFault错误
+    process.exit(0)
 } else {
     setTimeout(() => {
     
