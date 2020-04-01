@@ -7,10 +7,18 @@ jobs:
   include:
     - stage: build
       os: linux
-      before_script:
-      - npm run build
+      addons:
+        apt:
+          packages:
+          - libxtst-dev
+      # before_script:
+      # - npm run build
+      after_script:
+      - ls
     - stage: build
       os: windows
-      before_script:
-      - npm run build
+      # before_script:
+      # - npm run build
+      after_script:
+      - dir
       
