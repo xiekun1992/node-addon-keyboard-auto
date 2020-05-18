@@ -1,5 +1,5 @@
 # node-addon-keyboard-auto [![Build Status](https://travis-ci.org/xiekun1992/node-addon-keyboard-auto.svg?branch=master)](https://travis-ci.org/xiekun1992/node-addon-keyboard-auto)
-a nodejs addon for keyboard controlling, support windows and linux
+a nodejs addon for keyboard control, support windows and linux
 
 ## Dependecies
 ### linux platform
@@ -10,7 +10,14 @@ a nodejs addon for keyboard controlling, support windows and linux
 - libx11-dev (if missing will cause `fatal error: X11/keysym.h: No such file or directory`)
 - libxtst-dev (if missing will cause `fatal error: X11/extensions/XTest.h: No such file or directory`)
 
-## build steps
+## Build with docker
+- docker pull xkfront/keyboard-auto:v1
+- docker run -it --rm xkfront/keyboard-auto:v1 bash
+- git clone https://github.com/xiekun1992/node-addon-keyboard-auto.git && cd node-addon-keyboard-auto
+- npm install
+- npm run build
+
+## Build on local machine
 - install dependecies
 - npm install
 - npm run build
