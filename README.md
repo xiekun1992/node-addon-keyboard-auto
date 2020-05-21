@@ -1,6 +1,35 @@
 # node-addon-keyboard-auto [![Build Status](https://travis-ci.org/xiekun1992/node-addon-keyboard-auto.svg?branch=master)](https://travis-ci.org/xiekun1992/node-addon-keyboard-auto)
 a nodejs addon for keyboard control, support windows and linux
 
+## Usage
+`javascript
+const keyboardAuto = require('node-addon-keyboard-auto')
+keyboardAuto.keydown('a')
+keyboardAuto.keyup('a')
+
+keyboardAuto.keydown('a')
+keyboardAuto.keyup('a')
+
+keyboardAuto.keydown('a')
+keyboardAuto.keyup('a')
+
+keyboardAuto.keydown('a')
+keyboardAuto.keyup('a')
+
+keyboardAuto.keydown('a')
+keyboardAuto.keyup('a')
+
+keyboardAuto.keydown('shiftleft')
+keyboardAuto.keydown('>')
+keyboardAuto.keyup('>')
+keyboardAuto.keyup('shiftleft')
+
+keyboardAuto.keydown('controlleft')
+keyboardAuto.keydown('a')
+keyboardAuto.keyup('a')
+keyboardAuto.keyup('controlleft')
+`
+
 ## Dependecies
 ### linux platform
 - nodejs (any version supports N-API)
