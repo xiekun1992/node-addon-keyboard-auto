@@ -9,6 +9,10 @@ a nodejs addon for keyboard control, support windows and linux
 - g++
 - libx11-dev (if missing will cause `fatal error: X11/keysym.h: No such file or directory`)
 - libxtst-dev (if missing will cause `fatal error: X11/extensions/XTest.h: No such file or directory`)
+### windows platform
+- nodejs (any version supports N-API)
+- python2.x
+- visual studio 2017
 
 ## Build with docker
 - docker pull xkfront/keyboard-auto:v1
