@@ -2,7 +2,7 @@
 a nodejs addon for keyboard control, support windows and linux
 
 ## Usage
-`javascript
+```javascript
 const keyboardAuto = require('node-addon-keyboard-auto')
 keyboardAuto.keydown('a')
 keyboardAuto.keyup('a')
@@ -28,7 +28,7 @@ keyboardAuto.keydown('controlleft')
 keyboardAuto.keydown('a')
 keyboardAuto.keyup('a')
 keyboardAuto.keyup('controlleft')
-`
+```
 
 ## Dependecies
 ### linux platform
