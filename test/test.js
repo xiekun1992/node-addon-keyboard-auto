@@ -9,7 +9,6 @@ if (os.platform() == 'linux' && !process.env.DISPLAY) {
     process.exit(0)
 } else {
   before(function() {
-    // console.log(keyboardAuto)
     keyboardAuto.init()
   })
   after(function() {
@@ -38,10 +37,10 @@ if (os.platform() == 'linux' && !process.env.DISPLAY) {
   describe('keyboard_auto', function() {
     describe('keyboard actions', function() {
       it('given key press should be listened', function(done) {
-        keyboardAuto.event.on('keydown', function(event) {
+        keyboardAuto.event.once('keydown', function(event) {
           assert.equal(event.vkCode, 65)
         })
-        keyboardAuto.event.on('keyup', function(event) {
+        keyboardAuto.event.once('keyup', function(event) {
           assert.equal(event.vkCode, 65)
           done()
         })
@@ -94,9 +93,7 @@ if (os.platform() == 'linux' && !process.env.DISPLAY) {
           assert.equal(event.direction, 120)
           done()
         })
-        setTimeout(() => {
-          keyboardAuto.mousewheel(1)
-        }, 100)
+        keyboardAuto.mousewheel(1)
       })
       it('given mouse scroll down should be listened', function(done) {
         keyboardAuto.event.once('mousewheel', function(event) {
@@ -109,7 +106,7 @@ if (os.platform() == 'linux' && !process.env.DISPLAY) {
     })
     describe('mouse move', function() {
       it('given mouse move actions should be listened', function(done) {
-        keyboardAuto.event.on('mousemove', function(event) {
+        keyboardAuto.event.once('mousemove', function(event) {
           // console.log(event)
           assert.equal(event.x, 100)
           assert.equal(event.y, 200)
