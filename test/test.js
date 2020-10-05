@@ -36,37 +36,87 @@ if (os.platform() == 'linux' && !process.env.DISPLAY) {
   //   })
   // })
   describe('keyboard_auto', function() {
-    it('given keyboard actions should be listened', function(done) {
-      keyboardAuto.event.on('keydown', function(event) {
-        assert.equal(event.vkCode, 65, 'unexpected keydown vkCode')
+    describe('keyboard actions', function() {
+      it('given key press should be listened', function(done) {
+        keyboardAuto.event.on('keydown', function(event) {
+          assert.equal(event.vkCode, 65)
+        })
+        keyboardAuto.event.on('keyup', function(event) {
+          assert.equal(event.vkCode, 65)
+          done()
+        })
+        keyboardAuto.keydown('a')
+        keyboardAuto.keyup('a')
       })
-      keyboardAuto.event.on('keyup', function(event) {
-        assert.equal(event.vkCode, 65, 'unexpected keyup vkCode')
-        done()
-      })
-      keyboardAuto.keydown('a')
-      keyboardAuto.keyup('a')
     })
-    it('given mouse click actions should be listened', function(done) {
-      keyboardAuto.event.on('mousedown', function(event) {
-        console.log(event)
+    describe('mouse down & up', function() {
+      it('given mouse left click should be listened', function(done) {
+        keyboardAuto.event.once('mousedown', function(event) {
+          // console.log(event)
+          assert.equal(event.button, 1)
+        })
+        keyboardAuto.event.once('mouseup', function(event) {
+          assert.equal(event.button, 1)
+          done()
+        })
+        keyboardAuto.mousedown(1)
+        keyboardAuto.mouseup(1)
       })
-      keyboardAuto.event.on('mouseup', function(event) {
-        console.log(event)
+      it('given mouse middle click should be listened', function(done) {
+        keyboardAuto.event.once('mousedown', function(event) {
+          // console.log(event)
+          assert.equal(event.button, 2)
+        })
+        keyboardAuto.event.once('mouseup', function(event) {
+          assert.equal(event.button, 2)
+          done()
+        })
+        keyboardAuto.mousedown(2)
+        keyboardAuto.mouseup(2)
       })
-      done()
+      it('given mouse right click should be listened', function(done) {
+        keyboardAuto.event.once('mousedown', function(event) {
+          // console.log(event)
+          assert.equal(event.button, 3)
+        })
+        keyboardAuto.event.once('mouseup', function(event) {
+          assert.equal(event.button, 3)
+          done()
+        })
+        keyboardAuto.mousedown(3)
+        keyboardAuto.mouseup(3)
+      })
     })
-    it('given mouse scroll actions should be listened', function(done) {
-      keyboardAuto.event.on('mousewheel', function(event) {
-        console.log(event)
+    describe('mouse wheel actions', function() {
+      it('given mouse scroll up should be listened', function(done) {
+        keyboardAuto.event.once('mousewheel', function(event) {
+          // console.log(event)
+          assert.equal(event.direction, 120)
+          done()
+        })
+        setTimeout(() => {
+          keyboardAuto.mousewheel(1)
+        }, 100)
       })
-      done()
+      it('given mouse scroll down should be listened', function(done) {
+        keyboardAuto.event.once('mousewheel', function(event) {
+          // console.log(event)
+          assert.equal(event.direction, -120)
+          done()
+        })
+        keyboardAuto.mousewheel(-1)
+      })
     })
-    it('given mouse move actions should be listened', function(done) {
-      keyboardAuto.event.on('mousemove', function(event) {
-        console.log(event)
+    describe('mouse move', function() {
+      it('given mouse move actions should be listened', function(done) {
+        keyboardAuto.event.on('mousemove', function(event) {
+          // console.log(event)
+          assert.equal(event.x, 100)
+          assert.equal(event.y, 200)
+          done()
+        })
+        keyboardAuto.mousemove(100, 200)
       })
-      done()
     })
   })
 }

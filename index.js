@@ -65,5 +65,9 @@ module.exports = function () {
     release: keyboardAuto.releaseListener,
     keydown: keyboardAuto.keydown,
     keyup: keyboardAuto.keyup,
+    mousemove: keyboardAuto.mousemove,
+    mousewheel: keyboardAuto.mousewheel,
+    mousedown: keyboardAuto.mousedown,
+    mouseup: keyboardAuto.mouseup,
   }
 }
