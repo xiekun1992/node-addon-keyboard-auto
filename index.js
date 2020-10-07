@@ -69,5 +69,7 @@ module.exports = function () {
     mousewheel: keyboardAuto.mousewheel,
     mousedown: keyboardAuto.mousedown,
     mouseup: keyboardAuto.mouseup,
+    charToKeycode: keyboardAuto.charToKeycode,
+    keycodeToChar: keyboardAuto.keycodeToChar,
   }
 }

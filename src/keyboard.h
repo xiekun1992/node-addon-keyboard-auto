@@ -28,7 +28,7 @@ namespace keyboard_auto {
     INPUT ip;
     HKL kbl = GetKeyboardLayout(0);
 #endif
-    Keycode::Keycode kc;
+    keycode_auto::Keycode kc;
   public:
     Keyboard();
     ~Keyboard();

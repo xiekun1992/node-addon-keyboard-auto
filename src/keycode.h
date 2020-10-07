@@ -16,12 +16,13 @@
 #endif
 using namespace std;
 
-namespace Keycode {
+namespace keycode_auto {
   class Keycode {
     public: 
       Keycode();
       ~Keycode();
       int charToKeycode(string str);
+      string keycodeToChar(int keycode);
     private:
       map<string, int> keymap;
   };

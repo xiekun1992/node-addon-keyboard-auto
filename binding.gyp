@@ -12,6 +12,7 @@
         "src/mouse.cpp",
         "src/wrapper/wrapper.cpp",
         "src/wrapper/keyboard_wrapper.cpp",
+        "src/wrapper/keycode_wrapper.cpp",
         "src/wrapper/listener_wrapper.cpp",
         "src/wrapper/mouse_wrapper.cpp",
       ],
