@@ -14,6 +14,8 @@ namespace mouse_auto {
     double fy = y * (65535.0f / fScreenHeight);
 
     INPUT input;
+    // https://stackoverflow.com/questions/17315672/screen-goes-black-when-i-use-sendinput-to-send-mouse-cursor-positions
+    ZeroMemory(&input, sizeof(input));
     input.type = INPUT_MOUSE;
     input.mi.dwFlags = MOUSEEVENTF_MOVE | MOUSEEVENTF_ABSOLUTE;
     // printf("%d %d\n", fx, fy);
