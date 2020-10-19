@@ -8,12 +8,12 @@ LRESULT CALLBACK keyboardHookProc(int nCode, WPARAM wParam, LPARAM lParam) {
   switch (wParam) {
     case WM_KEYDOWN: 
       lambda_keyboard_handler(
-        new long[]{L_KEYDOWN, (long)hookStruct->vkCode, (long)hookStruct->scanCode}
+        new long[3]{L_KEYDOWN, (long)hookStruct->vkCode, (long)hookStruct->scanCode}
       );
       break;
     case WM_KEYUP: 
       lambda_keyboard_handler(
-        new long[]{L_KEYUP, (long)hookStruct->vkCode, (long)hookStruct->scanCode}
+        new long[3]{L_KEYUP, (long)hookStruct->vkCode, (long)hookStruct->scanCode}
       );
       break;
   }
@@ -27,42 +27,42 @@ LRESULT CALLBACK mouseHookProc(int nCode, WPARAM wParam, LPARAM lParam) {
   switch (wParam) {
     case WM_MOUSEWHEEL: 
       lambda_mouse_handler(
-        new long[]{L_MOUSEWHEEL, (long)p->pt.x, (long)p->pt.y, 0, (long)(mouseData >> 16)}
+        new long[5]{L_MOUSEWHEEL, (long)p->pt.x, (long)p->pt.y, 0, (long)(mouseData >> 16)}
       );
       break;
     case WM_MOUSEMOVE: 
       lambda_mouse_handler(
-        new long[]{L_MOUSEMOVE, (long)p->pt.x, (long)p->pt.y, 0, (long)(mouseData >> 16)}
+        new long[5]{L_MOUSEMOVE, (long)p->pt.x, (long)p->pt.y, 0, (long)(mouseData >> 16)}
       );
       break;
     case WM_LBUTTONDOWN: 
       lambda_mouse_handler(
-        new long[]{L_MOUSEDOWN, (long)p->pt.x, (long)p->pt.y, L_MOUSE_BUTTON_LEFT, (long)(mouseData >> 16)}
+        new long[5]{L_MOUSEDOWN, (long)p->pt.x, (long)p->pt.y, L_MOUSE_BUTTON_LEFT, (long)(mouseData >> 16)}
       );
       break;
     case WM_LBUTTONUP: 
       lambda_mouse_handler(
-        new long[]{L_MOUSEUP, (long)p->pt.x, (long)p->pt.y, L_MOUSE_BUTTON_LEFT, (long)(mouseData >> 16)}
+        new long[5]{L_MOUSEUP, (long)p->pt.x, (long)p->pt.y, L_MOUSE_BUTTON_LEFT, (long)(mouseData >> 16)}
       );
       break;
     case WM_RBUTTONDOWN: 
       lambda_mouse_handler(
-        new long[]{L_MOUSEDOWN, (long)p->pt.x, (long)p->pt.y, L_MOUSE_BUTTON_RIGHT, (long)(mouseData >> 16)}
+        new long[5]{L_MOUSEDOWN, (long)p->pt.x, (long)p->pt.y, L_MOUSE_BUTTON_RIGHT, (long)(mouseData >> 16)}
       );
       break;
     case WM_RBUTTONUP: 
       lambda_mouse_handler(
-        new long[]{L_MOUSEUP, (long)p->pt.x, (long)p->pt.y, L_MOUSE_BUTTON_RIGHT, (long)(mouseData >> 16)}
+        new long[5]{L_MOUSEUP, (long)p->pt.x, (long)p->pt.y, L_MOUSE_BUTTON_RIGHT, (long)(mouseData >> 16)}
       );
       break;
     case WM_MBUTTONDOWN: 
       lambda_mouse_handler(
-        new long[]{L_MOUSEDOWN, (long)p->pt.x, (long)p->pt.y, L_MOUSE_BUTTON_MIDLLE, (long)(mouseData >> 16)}
+        new long[5]{L_MOUSEDOWN, (long)p->pt.x, (long)p->pt.y, L_MOUSE_BUTTON_MIDLLE, (long)(mouseData >> 16)}
       );
       break;
     case WM_MBUTTONUP: 
       lambda_mouse_handler(
-        new long[]{L_MOUSEUP, (long)p->pt.x, (long)p->pt.y, L_MOUSE_BUTTON_MIDLLE, (long)(mouseData >> 16)}
+        new long[5]{L_MOUSEUP, (long)p->pt.x, (long)p->pt.y, L_MOUSE_BUTTON_MIDLLE, (long)(mouseData >> 16)}
       );
       break;
   }
