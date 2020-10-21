@@ -8,9 +8,11 @@
       "sources": [
         "src/keyboard.cpp", 
         "src/keycode.cpp",
+        "src/listener.cpp",
         "src/mouse.cpp",
         "src/wrapper/wrapper.cpp",
         "src/wrapper/keyboard_wrapper.cpp",
+        "src/wrapper/listener_wrapper.cpp",
         "src/wrapper/mouse_wrapper.cpp"
       ],
       "include_dirs": ["<!@(node -p \"require('node-addon-api').include\")"],
@@ -20,7 +22,7 @@
         [
           "OS == 'linux'", {
             "link_settings": {
-              "libraries": ["-lX11", "-lXtst", "-lstdc++"]
+              "libraries": ["-lX11", "-lXtst", "-lstdc++", "-lXext"]
             }
           }
         ]
