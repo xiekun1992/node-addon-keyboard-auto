@@ -2,6 +2,7 @@
 
 std::function<void(long*)> lambda_mouse_handler;
 std::function<void(long*)> lambda_keyboard_handler;
+int stop = 0;
 
 void callback(XPointer pointer, XRecordInterceptData* hook) {
   static int cursorx, cursory;
@@ -124,19 +125,17 @@ namespace listener_auto {
     if (!XRecordEnableContextAsync(data_display, record_context, callback, NULL)) {
       exit(5);
     }
-    while (stop != 1) {
-      printf("01\n");
+    while (true) {
       XRecordProcessReplies(data_display);
-      printf("02\n");
+      if (stop) {
+        break;
+      }
     }
-    printf("1\n");
     XRecordDisableContext(ctrl_display, record_context);
     XRecordFreeContext(ctrl_display, record_context);
     XFree(record_range);
-    printf("2\n");
     XCloseDisplay(data_display);
     XCloseDisplay(ctrl_display);
-    printf("3\n");
   }
   Listener::~Listener() {}
   void Listener::close() {

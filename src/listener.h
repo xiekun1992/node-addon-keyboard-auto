@@ -45,7 +45,7 @@ namespace listener_auto {
 #if __linux == 1
       Display* data_display = NULL;
       Display* ctrl_display = NULL;
-      int stop = 0;
+      // int stop = 0;
 #endif
     public:
       Listener(std::function<void(long*)> const& mlambda, std::function<void(long*)> const& klambda);
