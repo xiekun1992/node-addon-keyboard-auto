@@ -176,9 +176,9 @@ namespace keycode_auto {
     keymap["shiftleft"] = VK_LSHIFT;
     keymap["controlleft"] = VK_LCONTROL;
     keymap["meta"] = VK_LWIN;
-    keymap["altleft"] = VK_MENU;
+    keymap["altleft"] = 164;//VK_MENU;
     keymap["space"] = VK_SPACE;
-    keymap["altright"] = VK_MENU;
+    keymap["altright"] = 164;//VK_MENU;
     keymap["controlright"] = VK_RCONTROL;
     keymap["shiftright"] = VK_RSHIFT;
     keymap["printscreen"] = VK_SNAPSHOT;
