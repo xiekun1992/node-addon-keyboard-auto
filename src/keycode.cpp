@@ -251,5 +251,6 @@ namespace keycode_auto {
          return i.first;
       }
     }
+    return "";
   }
 }
