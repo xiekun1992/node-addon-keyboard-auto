@@ -1,11 +1,14 @@
 {
-  "name": "node-addon-keyboard-auto",
+  "name": "@xiekun1992/node-addon-keyboard-auto",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "build": "node-gyp rebuild",
     "test": "mocha test/test.js"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/xiekun1992"
   },
   "repository": {
     "type": "git",

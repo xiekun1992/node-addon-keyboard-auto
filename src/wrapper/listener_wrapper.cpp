@@ -3,6 +3,7 @@
 std::thread nativeThread;
 Napi::ThreadSafeFunction tsfn;
 int threadId = 0;
+listener_auto::Listener* listener_ptr = NULL;
 
 Napi::Value Listener::initListener(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
@@ -18,8 +19,9 @@ Napi::Value Listener::initListener(const Napi::CallbackInfo& info) {
   });
   
   nativeThread = std::thread([] () {
+#if _WIN32 == 1
     threadId = GetCurrentThreadId();
-
+#endif
     const std::string event{"event"};
     const std::string x{"x"};
     const std::string y{"y"};
@@ -56,7 +58,8 @@ Napi::Value Listener::initListener(const Napi::CallbackInfo& info) {
     auto keyboard_handler = [=](long* value) {
       tsfn.BlockingCall(value, callback);
     };
-    listener_auto::Listener listener(mouse_handler, keyboard_handler);
+
+    listener_ptr = new listener_auto::Listener(mouse_handler, keyboard_handler);
     // while(true) {
     //   double* value = new double(1000);
     //   napi_status status = tsfn.BlockingCall(value, callback);
@@ -69,7 +72,12 @@ Napi::Value Listener::initListener(const Napi::CallbackInfo& info) {
   return env.Undefined();
 }
 Napi::Value Listener::releaseListener(const Napi::CallbackInfo& info) {
+#if _WIN32 == 1
   PostThreadMessageA(threadId, WM_QUIT, 0, 0);
+#elif __linux == 1
+  listener_ptr->close();
+#endif
+  delete listener_ptr;
   tsfn.Release();
   return info.Env().Undefined();
 }

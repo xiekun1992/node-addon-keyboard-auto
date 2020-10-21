@@ -1,11 +1,11 @@
 #pragma once
+
 #ifndef _LISTENER_WRAPPER
 #define _LISTENER_WRAPPER
 
 #include <napi.h>
 #include <chrono>
 #include <thread>
-#include <windows.h>
 #include <map>
 #include "../listener.h"
 

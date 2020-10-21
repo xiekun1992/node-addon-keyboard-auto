@@ -4,7 +4,6 @@
 #define _MOUSE_WRAPPER
 
 #include <napi.h>
-#include <windows.h>
 #include "../mouse.h"
 
 namespace Mouse {

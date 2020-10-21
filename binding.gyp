@@ -23,7 +23,7 @@
         [
           "OS == 'linux'", {
             "link_settings": {
-              "libraries": ["-lX11", "-lXtst"]
+              "libraries": ["-lX11", "-lXtst", "-lstdc++", "-lXext"]
             }
           }
         ]
