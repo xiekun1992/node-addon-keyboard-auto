@@ -19,8 +19,9 @@ Napi::Value Listener::initListener(const Napi::CallbackInfo& info) {
   });
   
   nativeThread = std::thread([] () {
-    // threadId = GetCurrentThreadId();
-
+#if _WIN32 == 1
+    threadId = GetCurrentThreadId();
+#endif
     const std::string event{"event"};
     const std::string x{"x"};
     const std::string y{"y"};
@@ -57,6 +58,7 @@ Napi::Value Listener::initListener(const Napi::CallbackInfo& info) {
     auto keyboard_handler = [=](long* value) {
       tsfn.BlockingCall(value, callback);
     };
+
     listener_ptr = new listener_auto::Listener(mouse_handler, keyboard_handler);
     // while(true) {
     //   double* value = new double(1000);
@@ -70,8 +72,11 @@ Napi::Value Listener::initListener(const Napi::CallbackInfo& info) {
   return env.Undefined();
 }
 Napi::Value Listener::releaseListener(const Napi::CallbackInfo& info) {
-  // PostThreadMessageA(threadId, WM_QUIT, 0, 0);
+#if _WIN32 == 1
+  PostThreadMessageA(threadId, WM_QUIT, 0, 0);
+#elif __linux == 1
   listener_ptr->close();
+#endif
   delete listener_ptr;
   tsfn.Release();
   return info.Env().Undefined();

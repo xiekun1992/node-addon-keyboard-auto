@@ -6,7 +6,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <functional>
-#if __linux == 1
+#include <chrono>
+#include <thread>
+
+#if _WIN32 == 1
+
+#include <windows.h>
+
+#elif __linux == 1
+
 #include <X11/Xlibint.h>
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
@@ -42,7 +50,12 @@ typedef union {
 namespace listener_auto {
   class Listener {
     private:
-#if __linux == 1
+#if _WIN32 == 1
+      HHOOK mouseHook;
+      HHOOK keyboardHook;
+      // static LRESULT CALLBACK keyboardHookProc(int nCode, WPARAM wParam, LPARAM lParam);
+      // static LRESULT CALLBACK mouseHookProc(int nCode, WPARAM wParam, LPARAM lParam);
+#elif __linux == 1
       Display* data_display = NULL;
       Display* ctrl_display = NULL;
       // int stop = 0;

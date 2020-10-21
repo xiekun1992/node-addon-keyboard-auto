@@ -1,6 +1,6 @@
 #include "keycode.h"
 
-namespace Keycode {
+namespace keycode_auto {
   Keycode::Keycode() {
 #if __linux == 1 
     keymap["a"] = XK_A;
@@ -189,10 +189,10 @@ namespace Keycode {
     keymap["backspace"] = VK_BACK;
     keymap["delete"] = VK_DELETE;
     keymap["enter"] = VK_RETURN;
-    keymap["contextmenu"] = VK_RMENU;
+    keymap["contextmenu"] = 93;//VK_RMENU;
 
-    keymap["`"] = 65535;
-    keymap["~"] = 65535;
+    keymap["`"] = 192;
+    keymap["~"] = 192;
     keymap["!"] = 65535;
     keymap["@"] = 65535;
     keymap["#"] = 65535;
@@ -203,26 +203,26 @@ namespace Keycode {
     keymap["*"] = 65535;
     keymap["("] = 65535;
     keymap[")"] = 65535;
-    keymap["-"] = 65535;
-    keymap["_"] = 65535;
-    keymap["="] = 65535;
-    keymap["+"] = 65535;
-    keymap["["] = 65535;
-    keymap["]"] = 65535;
-    keymap["{"] = 65535;
-    keymap["}"] = 65535;
-    keymap["\\"] = 65535;
-    keymap["|"] = 65535;
-    keymap[";"] = 65535;
-    keymap[":"] = 65535;
-    keymap["'"] = 65535;
-    keymap["\""] = 65535;
-    keymap[","] = 65535;
-    keymap["."] = 65535;
-    keymap["/"] = 65535;
-    keymap["<"] = 65535;
-    keymap[">"] = 65535;
-    keymap["?"] = 65535;
+    keymap["-"] = 189;
+    keymap["_"] = 189;
+    keymap["="] = 187;
+    keymap["+"] = 187;
+    keymap["["] = 219;
+    keymap["]"] = 221;
+    keymap["{"] = 219;
+    keymap["}"] = 221;
+    keymap["\\"] = 220;
+    keymap["|"] = 220;
+    keymap[";"] = 186;
+    keymap[":"] = 186;
+    keymap["'"] = 222;
+    keymap["\""] = 222;
+    keymap[","] = 188;
+    keymap["."] = 190;
+    keymap["/"] = 191;
+    keymap["<"] = 188;
+    keymap[">"] = 190;
+    keymap["?"] = 191;
 
 
     keymap["up"] = VK_UP;
@@ -244,6 +244,12 @@ namespace Keycode {
       // std::cerr << e.what() << '\n';
       return -1;
     }
-    
+  }
+  string Keycode::keycodeToChar(int keycode) {
+    for (auto &i : keymap) {
+      if (i.second == keycode) {
+         return i.first;
+      }
+    }
   }
 }
