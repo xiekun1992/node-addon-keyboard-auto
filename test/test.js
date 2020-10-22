@@ -3,8 +3,9 @@ const {performance} = require('perf_hooks')
 let keyboardAuto = require('../index')()
 const os = require('os')
 // console.log(keyboardAuto)
+const linux = os.platform() == 'linux'
 
-if (os.platform() == 'linux' && !process.env.DISPLAY) {
+if (linux && !process.env.DISPLAY) {
     console.log('npm test will not run on linux server') // 没有GUI环境导致SegmentFault错误
     process.exit(0)
 } else {
@@ -14,30 +15,11 @@ if (os.platform() == 'linux' && !process.env.DISPLAY) {
   after(function() {
     keyboardAuto.release()
   })
-  // describe('keyboard', function() {
-  //   it('given a sequence actions should be automated', function() {
-  //     // const st = performance.now()  
-  //     keyboardAuto.keydown('a')
-  //     keyboardAuto.keyup('a')
-  //     // keyboardAuto.keydown('a')
-  //     // keyboardAuto.keyup('a')
-  //     // keyboardAuto.keydown('a')
-  //     // keyboardAuto.keyup('a')
-  //     // keyboardAuto.keydown('a')
-  //     // keyboardAuto.keyup('a')
-  //     // keyboardAuto.keydown('a')
-  //     // keyboardAuto.keyup('a')
-  //     // keyboardAuto.keydown('controlleft')
-  //     // keyboardAuto.keydown('v')
-  //     // keyboardAuto.keyup('v')
-  //     // keyboardAuto.keyup('controlleft')
-  //     // console.log(`${(performance.now() - st) / 10}ms`)
-  //   })
-  // })
   describe('keyboard_auto', function() {
     describe('keyboard actions', function() {
       it('given key press should be listened', function(done) {
         keyboardAuto.event.once('keydown', function(event) {
+          console.log(event)
           assert.equal(event.vkCode, 65)
         })
         keyboardAuto.event.once('keyup', function(event) {
@@ -90,7 +72,7 @@ if (os.platform() == 'linux' && !process.env.DISPLAY) {
       it('given mouse scroll up should be listened', function(done) {
         keyboardAuto.event.once('mousewheel', function(event) {
           // console.log(event)
-          assert.equal(event.direction, 120)
+          assert.equal(event.direction, linux ? 1: 120)
           done()
         })
         keyboardAuto.mousewheel(1)
@@ -98,7 +80,7 @@ if (os.platform() == 'linux' && !process.env.DISPLAY) {
       it('given mouse scroll down should be listened', function(done) {
         keyboardAuto.event.once('mousewheel', function(event) {
           // console.log(event)
-          assert.equal(event.direction, -120)
+          assert.equal(event.direction, linux ? -1: -120)
           done()
         })
         keyboardAuto.mousewheel(-1)
