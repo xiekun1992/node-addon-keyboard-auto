@@ -22,11 +22,10 @@ if (linux && !process.env.DISPLAY) {
   describe('keyboard_auto', function() {
     describe('keyboard actions', function() {
       it('given key press should be listened', function(done) {
-        keyboardAuto.event.on('keydown', function(event) {
-          console.log('-------', event, keyboardAuto.keycodeToChar(event.vkCode))
+        keyboardAuto.event.once('keydown', function(event) {
           assert.equal(keyboardAuto.keycodeToChar(event.vkCode), 'a')
         })
-        keyboardAuto.event.on('keyup', function(event) {
+        keyboardAuto.event.once('keyup', function(event) {
           assert.equal(keyboardAuto.keycodeToChar(event.vkCode), 'a')
           done()
         })
@@ -34,7 +33,7 @@ if (linux && !process.env.DISPLAY) {
         keyboardAuto.keyup('a')
       })
     })
-    xdescribe('mouse down & up', function() {
+    describe('mouse down & up', function() {
       it('given mouse left click should be listened', function(done) {
         keyboardAuto.event.once('mousedown', function(event) {
           // console.log(event)
@@ -72,7 +71,7 @@ if (linux && !process.env.DISPLAY) {
         keyboardAuto.mouseup(3)
       })
     })
-    xdescribe('mouse wheel actions', function() {
+    describe('mouse wheel actions', function() {
       it('given mouse scroll up should be listened', function(done) {
         keyboardAuto.event.once('mousewheel', function(event) {
           // console.log(event)
@@ -90,7 +89,7 @@ if (linux && !process.env.DISPLAY) {
         keyboardAuto.mousewheel(-1)
       })
     })
-    xdescribe('mouse move', function() {
+    describe('mouse move', function() {
       it('given mouse move actions should be listened', function(done) {
         keyboardAuto.event.once('mousemove', function(event) {
           // console.log(event)
