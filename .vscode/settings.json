@@ -1,6 +1,8 @@
 {
     "files.associations": {
         "thread": "cpp",
-        "xstring": "cpp"
+        "xstring": "cpp",
+        "xtree": "cpp",
+        "map": "cpp"
     }
 }

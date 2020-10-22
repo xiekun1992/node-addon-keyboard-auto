@@ -237,13 +237,11 @@ namespace keycode_auto {
   }
   Keycode::~Keycode() {}
   int Keycode::charToKeycode(string str) {
-    try {
-      return keymap.at(str);
-      // return keymap[str]; 
-    } catch(const std::exception& e) {
-      // std::cerr << e.what() << '\n';
-      return -1;
+    map<string, int>::iterator iterator = keymap.find(str);
+    if (iterator != keymap.end()) {
+      return iterator->second;
     }
+    return -1;
   }
   string Keycode::keycodeToChar(int keycode) {
     for (auto &i : keymap) {
