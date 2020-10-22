@@ -3,7 +3,7 @@
 namespace keycode_auto {
   Keycode::Keycode() {
 #if __linux == 1 
-    keymap["a"] = XK_A;
+    keymap["a"] = XK_a;
     keymap["b"] = XK_B;
     keymap["c"] = XK_C;
     keymap["d"] = XK_D;

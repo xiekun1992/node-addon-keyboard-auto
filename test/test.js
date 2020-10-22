@@ -3,6 +3,10 @@ const {performance} = require('perf_hooks')
 let keyboardAuto = require('../index')()
 const os = require('os')
 // console.log(keyboardAuto)
+// keyboardAuto.init()
+// keyboardAuto.event.on('keydown', function(event) {
+//   console.log(event, keyboardAuto.keycodeToChar(event.vkCode))
+// })
 
 if (os.platform() == 'linux' && !process.env.DISPLAY) {
     console.log('npm test will not run on linux server') // 没有GUI环境导致SegmentFault错误
@@ -14,41 +18,22 @@ if (os.platform() == 'linux' && !process.env.DISPLAY) {
   after(function() {
     keyboardAuto.release()
   })
-  // describe('keyboard', function() {
-  //   it('given a sequence actions should be automated', function() {
-  //     // const st = performance.now()  
-  //     keyboardAuto.keydown('a')
-  //     keyboardAuto.keyup('a')
-  //     // keyboardAuto.keydown('a')
-  //     // keyboardAuto.keyup('a')
-  //     // keyboardAuto.keydown('a')
-  //     // keyboardAuto.keyup('a')
-  //     // keyboardAuto.keydown('a')
-  //     // keyboardAuto.keyup('a')
-  //     // keyboardAuto.keydown('a')
-  //     // keyboardAuto.keyup('a')
-  //     // keyboardAuto.keydown('controlleft')
-  //     // keyboardAuto.keydown('v')
-  //     // keyboardAuto.keyup('v')
-  //     // keyboardAuto.keyup('controlleft')
-  //     // console.log(`${(performance.now() - st) / 10}ms`)
-  //   })
-  // })
   describe('keyboard_auto', function() {
     describe('keyboard actions', function() {
       it('given key press should be listened', function(done) {
-        keyboardAuto.event.once('keydown', function(event) {
-          assert.equal(event.vkCode, 65)
+        keyboardAuto.event.on('keydown', function(event) {
+          console.log('-------', event, keyboardAuto.keycodeToChar(event.vkCode))
+          assert.equal(keyboardAuto.keycodeToChar(event.vkCode), 'a')
         })
-        keyboardAuto.event.once('keyup', function(event) {
-          assert.equal(event.vkCode, 65)
+        keyboardAuto.event.on('keyup', function(event) {
+          assert.equal(keyboardAuto.keycodeToChar(event.vkCode), 'a')
           done()
         })
         keyboardAuto.keydown('a')
         keyboardAuto.keyup('a')
       })
     })
-    describe('mouse down & up', function() {
+    xdescribe('mouse down & up', function() {
       it('given mouse left click should be listened', function(done) {
         keyboardAuto.event.once('mousedown', function(event) {
           // console.log(event)
@@ -86,7 +71,7 @@ if (os.platform() == 'linux' && !process.env.DISPLAY) {
         keyboardAuto.mouseup(3)
       })
     })
-    describe('mouse wheel actions', function() {
+    xdescribe('mouse wheel actions', function() {
       it('given mouse scroll up should be listened', function(done) {
         keyboardAuto.event.once('mousewheel', function(event) {
           // console.log(event)
@@ -104,7 +89,7 @@ if (os.platform() == 'linux' && !process.env.DISPLAY) {
         keyboardAuto.mousewheel(-1)
       })
     })
-    describe('mouse move', function() {
+    xdescribe('mouse move', function() {
       it('given mouse move actions should be listened', function(done) {
         keyboardAuto.event.once('mousemove', function(event) {
           // console.log(event)
