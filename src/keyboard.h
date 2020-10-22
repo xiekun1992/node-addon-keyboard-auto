@@ -14,7 +14,7 @@
 
 #elif _WIN32 == 1
 
-#define WINVER 0x0500 // SendInput needs this
+// #define WINVER 0x0500 // SendInput needs this
 #include <windows.h>
 
 #endif

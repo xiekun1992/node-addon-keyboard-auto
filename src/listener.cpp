@@ -76,6 +76,8 @@ LRESULT CALLBACK mouseHookProc(int nCode, WPARAM wParam, LPARAM lParam) {
   return CallNextHookEx(NULL, nCode, wParam, lParam);
 }
 #elif __linux == 1
+Display* data_display = NULL;
+Display* ctrl_display = NULL;
 int stop = 0;
 
 void callback(XPointer pointer, XRecordInterceptData* hook) {
@@ -95,12 +97,12 @@ void callback(XPointer pointer, XRecordInterceptData* hook) {
   switch(event_type) {
     case KeyPress: 
       lambda_keyboard_handler(
-        new long[3]{L_KEYDOWN, keycode, 0}
+        new long[3]{L_KEYDOWN, (long)XStringToKeysym(XKeysymToString(XKeycodeToKeysym(ctrl_display, keycode, 0))), 0}
       ); 
       break;
     case KeyRelease: 
       lambda_keyboard_handler(
-        new long[3]{L_KEYUP, keycode, 0}
+        new long[3]{L_KEYUP, (long)XStringToKeysym(XKeysymToString(XKeycodeToKeysym(ctrl_display, keycode, 0))), 0}
       ); 
       break;
     case ButtonPress: 
@@ -251,4 +253,10 @@ namespace listener_auto {
     stop = 1;
 #endif
   }
+#if __linux == 1
+  unsigned long Listener::keycodeToXKey(long keycode) {
+    KeySym keySym = XStringToKeysym(XKeysymToString(XKeycodeToKeysym(ctrl_display, keycode, 0)));
+    return keySym;
+  }
+#endif
 }

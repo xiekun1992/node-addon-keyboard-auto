@@ -56,8 +56,8 @@ namespace listener_auto {
       // static LRESULT CALLBACK keyboardHookProc(int nCode, WPARAM wParam, LPARAM lParam);
       // static LRESULT CALLBACK mouseHookProc(int nCode, WPARAM wParam, LPARAM lParam);
 #elif __linux == 1
-      Display* data_display = NULL;
-      Display* ctrl_display = NULL;
+      // Display* data_display = NULL;
+      // Display* ctrl_display = NULL;
       // int stop = 0;
 #endif
     public:
