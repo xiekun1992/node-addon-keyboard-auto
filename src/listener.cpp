@@ -253,10 +253,4 @@ namespace listener_auto {
     stop = 1;
 #endif
   }
-#if __linux == 1
-  unsigned long Listener::keycodeToXKey(long keycode) {
-    KeySym keySym = XStringToKeysym(XKeysymToString(XKeycodeToKeysym(ctrl_display, keycode, 0)));
-    return keySym;
-  }
-#endif
 }
