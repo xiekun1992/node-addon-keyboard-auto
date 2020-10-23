@@ -21,7 +21,7 @@
     "url": "https://github.com/xiekun1992/node-addon-keyboard-auto/issues"
   },
   "homepage": "https://github.com/xiekun1992/node-addon-keyboard-auto#readme",
-  "devDependencies": {
+  "dependencies": {
     "mocha": "^8.1.3",
     "node-addon-api": "*",
     "node-gyp": "^6.1.0"
