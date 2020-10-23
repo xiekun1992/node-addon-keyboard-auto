@@ -36,6 +36,7 @@ namespace mouse_auto {
   void Mouse::mouse_wheel(int direction) { // -1: up, 1: down
 #if _WIN32 == 1
     INPUT input;
+    ZeroMemory(&input, sizeof(input));
     input.type = INPUT_MOUSE;
     input.mi.mouseData = direction > 0 ? WHEEL_DELTA : -1 * WHEEL_DELTA;
     input.mi.dwFlags = MOUSEEVENTF_WHEEL | MOUSEEVENTF_ABSOLUTE;
@@ -59,6 +60,7 @@ namespace mouse_auto {
   void Mouse::mouse_down(int button) { // 1: left(Button1), 2: middle(Button2), 3: right(Button3)
 #if _WIN32 == 1
     INPUT input;
+    ZeroMemory(&input, sizeof(input));
     input.type = INPUT_MOUSE;
     input.mi.dx = 0;
     input.mi.dy = 0;
@@ -76,6 +78,7 @@ namespace mouse_auto {
   void Mouse::mouse_up(int button) {
 #if _WIN32 == 1
     INPUT input;
+    ZeroMemory(&input, sizeof(input));
     input.type = INPUT_MOUSE;
     input.mi.dx = 0;
     input.mi.dy = 0;
