@@ -229,6 +229,7 @@ namespace listener_auto {
       exit(5);
     }
     while (true) {
+      usleep(100); // reduce cpu overhead
       XRecordProcessReplies(data_display);
       if (stop) {
         break;

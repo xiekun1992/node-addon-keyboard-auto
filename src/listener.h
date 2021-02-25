@@ -15,6 +15,7 @@
 
 #elif __linux == 1
 
+#include <unistd.h>
 #include <X11/Xlibint.h>
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
