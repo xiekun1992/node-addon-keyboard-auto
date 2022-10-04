@@ -82,9 +82,7 @@ Napi::Value Listener::releaseListener(const Napi::CallbackInfo& info) {
   return info.Env().Undefined();
 }
 Napi::Value Listener::setBlock(const Napi::CallbackInfo& info) {
-  if (listener_ptr != NULL) {
-    listener_ptr->setBlock(info[0].As<Napi::Boolean>().ToBoolean());
-  }
+  listener_ptr->setBlock(info[0].As<Napi::Boolean>().ToBoolean());
   return info.Env().Undefined();
 }
 
