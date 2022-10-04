@@ -71,5 +71,6 @@ module.exports = function () {
     mouseup: keyboardAuto.mouseup,
     charToKeycode: keyboardAuto.charToKeycode,
     keycodeToChar: keyboardAuto.keycodeToChar,
+    setBlock: keyboardAuto.setBlock,
   }
 }

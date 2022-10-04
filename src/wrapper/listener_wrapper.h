@@ -13,6 +13,7 @@ namespace Listener {
   Napi::Value initListener(const Napi::CallbackInfo& info);
   Napi::Value releaseListener(const Napi::CallbackInfo& info);
   Napi::Object initMethods(Napi::Env env, Napi::Object exports);
+  Napi::Value setBlock(const Napi::CallbackInfo& info);
 }
 
 #endif
