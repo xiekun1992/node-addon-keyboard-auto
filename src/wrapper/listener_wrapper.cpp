@@ -81,8 +81,16 @@ Napi::Value Listener::releaseListener(const Napi::CallbackInfo& info) {
   tsfn.Release();
   return info.Env().Undefined();
 }
+Napi::Value Listener::setBlock(const Napi::CallbackInfo& info) {
+  if (listener_ptr != NULL) {
+    listener_ptr->setBlock(info[0].As<Napi::Boolean>().ToBoolean());
+  }
+  return info.Env().Undefined();
+}
+
 Napi::Object Listener::initMethods(Napi::Env env, Napi::Object exports) {
   exports.Set("initListener", Napi::Function::New(env, Listener::initListener));
   exports.Set("releaseListener", Napi::Function::New(env, Listener::releaseListener));
+  exports.Set("setBlock", Napi::Function::New(env, Listener::setBlock));
   return exports;
 }

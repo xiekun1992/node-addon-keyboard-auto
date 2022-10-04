@@ -65,6 +65,7 @@ namespace listener_auto {
       Listener(std::function<void(long*)> const& mlambda, std::function<void(long*)> const& klambda);
       ~Listener();
       void close();
+      void setBlock(bool block);
   };
 }
 

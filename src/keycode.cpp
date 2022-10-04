@@ -59,8 +59,8 @@ namespace keycode_auto {
     keymap["capslock"] = XK_Caps_Lock;
     keymap["shiftleft"] = XK_Shift_L;
     keymap["controlleft"] = XK_Control_L;
-    keymap["meta"] = XK_Meta_L;
-    // keymap["meta"] = XK_Super_L;
+    // keymap["meta"] = XK_Meta_L;
+    keymap["meta"] = XK_Super_L;
     keymap["altleft"] = XK_Alt_L;
     keymap["space"] = XK_space;
     keymap["altright"] = XK_Alt_R;

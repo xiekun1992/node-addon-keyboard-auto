@@ -5,6 +5,8 @@ std::function<void(long*)> lambda_keyboard_handler;
 
 #if _WIN32 == 1
 
+bool blocking = false;
+
 LRESULT CALLBACK keyboardHookProc(int nCode, WPARAM wParam, LPARAM lParam) {
   PKBDLLHOOKSTRUCT hookStruct = (PKBDLLHOOKSTRUCT)lParam;
   switch (wParam) {
@@ -20,6 +22,9 @@ LRESULT CALLBACK keyboardHookProc(int nCode, WPARAM wParam, LPARAM lParam) {
       break;
   }
   // printf("%ld %ld %ld\n", wParam, hookStruct->vkCode, hookStruct->scanCode);
+  if (blocking) {
+    return 1; // disable key
+  }
   return CallNextHookEx(NULL, nCode, wParam, lParam);
 }
 LRESULT CALLBACK mouseHookProc(int nCode, WPARAM wParam, LPARAM lParam) {
@@ -172,6 +177,7 @@ namespace listener_auto {
     lambda_mouse_handler = mlambda;
     lambda_keyboard_handler = klambda;
 #if _WIN32 == 1
+    blocking = false;
     mouseHook = SetWindowsHookEx(
         WH_MOUSE_LL,/* Type of hook */
         mouseHookProc,/* Hook process */
@@ -253,5 +259,8 @@ namespace listener_auto {
 #if __linux == 1
     stop = 1;
 #endif
+  }
+  void Listener::setBlock(bool block) {
+    blocking = block;
   }
 }
