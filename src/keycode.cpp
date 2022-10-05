@@ -41,6 +41,23 @@ namespace keycode_auto {
     keymap["8"] = XK_8;
     keymap["9"] = XK_9;
 
+    keymap["numpad0"] = XK_KP_0;
+    keymap["numpad1"] = XK_KP_1;
+    keymap["numpad2"] = XK_KP_2;
+    keymap["numpad3"] = XK_KP_3;
+    keymap["numpad4"] = XK_KP_4;
+    keymap["numpad5"] = XK_KP_5;
+    keymap["numpad6"] = XK_KP_6;
+    keymap["numpad7"] = XK_KP_7;
+    keymap["numpad8"] = XK_KP_8;
+    keymap["numpad9"] = XK_KP_9;
+    
+    keymap["numpadmultiply"] = XK_KP_Multiply;
+    keymap["numpadsubtract"] = XK_KP_Subtract;
+    keymap["numpaddivide"] = XK_KP_Divide;
+    keymap["numpadadd"] = XK_KP_Add;
+    keymap["numpaddecimal"] = XK_KP_Decimal;
+
     keymap["f1"] = XK_F1;
     keymap["f2"] = XK_F2;
     keymap["f3"] = XK_F3;
@@ -156,6 +173,23 @@ namespace keycode_auto {
     keymap["7"] = 0x37;
     keymap["8"] = 0x38;
     keymap["9"] = 0x39;
+
+    keymap["numpad0"] = VK_NUMPAD0;
+    keymap["numpad1"] = VK_NUMPAD1;
+    keymap["numpad2"] = VK_NUMPAD2;
+    keymap["numpad3"] = VK_NUMPAD3;
+    keymap["numpad4"] = VK_NUMPAD4;
+    keymap["numpad5"] = VK_NUMPAD5;
+    keymap["numpad6"] = VK_NUMPAD6;
+    keymap["numpad7"] = VK_NUMPAD7;
+    keymap["numpad8"] = VK_NUMPAD8;
+    keymap["numpad9"] = VK_NUMPAD9;
+    
+    keymap["numpadmultiply"] = VK_MULTIPLY;
+    keymap["numpadsubtract"] = VK_SUBTRACT;
+    keymap["numpaddivide"] = VK_DIVIDE;
+    keymap["numpadadd"] = VK_ADD;
+    keymap["numpaddecimal"] = VK_DECIMAL;
 
     keymap["f1"] = VK_F1;
     keymap["f2"] = VK_F2;
