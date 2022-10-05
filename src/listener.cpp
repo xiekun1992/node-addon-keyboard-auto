@@ -2,10 +2,10 @@
 
 std::function<void(long*)> lambda_mouse_handler;
 std::function<void(long*)> lambda_keyboard_handler;
+bool blocking = false;
 
 #if _WIN32 == 1
 
-bool blocking = false;
 
 LRESULT CALLBACK keyboardHookProc(int nCode, WPARAM wParam, LPARAM lParam) {
   PKBDLLHOOKSTRUCT hookStruct = (PKBDLLHOOKSTRUCT)lParam;
