@@ -1,7 +1,7 @@
 {
   "targets": [
     {
-      # 不要用'-'命名，不然会报<command-line>: error: expected initializer before ‘-’ token的错误
+      # do not use '-' in target_name, it will lead to "<command-line>: error: expected initializer before '-' token" error
       "target_name": "keyboard_auto",
       "cflags!": ["-fno-exceptions"],
       "cflags_cc!": ["-fno-exceptions"],
