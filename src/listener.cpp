@@ -29,6 +29,7 @@ LRESULT CALLBACK keyboardHookProc(int nCode, WPARAM wParam, LPARAM lParam) {
   }
   return CallNextHookEx(NULL, nCode, wParam, lParam);
 }
+
 LRESULT CALLBACK mouseHookProc(int nCode, WPARAM wParam, LPARAM lParam) {
   // Get event information
   PMSLLHOOKSTRUCT p = (PMSLLHOOKSTRUCT)lParam;
@@ -80,8 +81,30 @@ LRESULT CALLBACK mouseHookProc(int nCode, WPARAM wParam, LPARAM lParam) {
   //    SetCursorPos(
   //        /* X */ int(screen_centre_x + cos(angle) * 300),/* Y */ int(screen_centre_y + sin(angle) * 300)
   //    );
+  if (blocking) {
+    return 1;
+  }
   return CallNextHookEx(NULL, nCode, wParam, lParam);
 }
+
+LRESULT CALLBACK deviceHookProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
+  if (msg == WM_INPUT) {
+    HRAWINPUT hRawInput = (HRAWINPUT)lParam;
+    RAWINPUT input = {0};
+    UINT size = sizeof(input);
+    GetRawInputData(hRawInput, RID_INPUT, &input, &size, sizeof(RAWINPUTHEADER));
+    if (MOUSE_MOVE_RELATIVE == input.data.mouse.usFlags) {
+      // printf("mouse rel %d, move = %ld, %ld\n", input.data.mouse.usFlags, input.data.mouse.lLastX, input.data.mouse.lLastY);
+      if (blocking) {
+        lambda_mouse_handler(
+          new long[5]{L_MOUSEMOVEREL, input.data.mouse.lLastX, input.data.mouse.lLastY, 0, 0}
+        );
+      }
+    }
+  }
+  return DefWindowProc(hwnd, msg, wParam, lParam);
+}
+
 #elif __linux == 1
 Display* data_display = NULL;
 Display* ctrl_display = NULL;
@@ -191,6 +214,23 @@ namespace listener_auto {
         NULL,
         NULL
     );
+
+    WNDCLASSEX wcx = {0};
+    wcx.cbSize = sizeof(WNDCLASSEX);
+    wcx.lpfnWndProc = deviceHookProc;
+    wcx.hInstance = GetModuleHandle(NULL);
+    wcx.lpszClassName = TEXT("RawInputClass");
+    RegisterClassEx(&wcx);
+    HWND hwnd = CreateWindowEx(0, TEXT("RawInputClass"), NULL, 0, 0, 0, 0, 0, HWND_MESSAGE, NULL, GetModuleHandle(NULL), NULL);
+
+    RAWINPUTDEVICE rid = {0};
+    rid.usUsagePage = 0x01;
+    rid.usUsage = 0x02; // mouse
+    // rid.usUsage = 0x06; // keybaord
+    rid.dwFlags = RIDEV_INPUTSINK;
+    rid.hwndTarget = hwnd;
+
+    RegisterRawInputDevices(&rid, 1, sizeof(RAWINPUTDEVICE));
     // https://stackoverflow.com/questions/4509521/does-getmessage-need-a-gui
     // MSG msg;
     // PeekMessage(&msg, NULL, WM_USER, WM_USER, PM_NOREMOVE);

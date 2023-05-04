@@ -59,6 +59,13 @@ module.exports = function () {
               scanCode: ev.scanCode
             })
             break
+          case 6: 
+            event.emit('mousemoverel', {
+              event: 'mousemoverel',
+              x: ev.x,
+              y: ev.y
+            })
+            break
         }
       })
     },
